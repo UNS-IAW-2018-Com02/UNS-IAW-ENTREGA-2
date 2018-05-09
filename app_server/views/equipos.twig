@@ -1,0 +1,109 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<body onload="abrirEquipos();">    
+
+        <div class="container-fluid">
+            <div class="row header-laliga text-center py-3 px-5">           
+                <img class="img-header" src="/images/laliga.png">
+                <h3 class="text-white my-auto" id="txt-header"> No es futbol. Es LaLiga</h3>
+            </div>
+        </div>
+     <div class="container-fluid bg-danger">
+            <div class="container">
+                <div class = "row justify-content-start bg-danger">
+                    <nav class="navbar navbar-dark navbar-expand-md">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarText">
+                            <ul id="navbar" class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_clasificacion" class="nav-link" href="/posiciones">Clasificación</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_calendario" class="nav-link" href="/fechas">Calendario</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_equipo" class="nav-link active" href="/equipos">Equipos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn-estilo" class="nav-link" onclick="cambiarEstilo();"><span class="oi oi-brush"></span>Cambiar Estilo</a>
+                                </li>
+                                 {% if user %}
+                                  <li class="nav-item">
+                                    <a class="nav-link text-warning"><span class="oi oi-person"></span>&ensp;{{user.google.name}}</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a href="/auth/logout" class="btn btn-warning"><span class="fa fa-google-plus"></span>Cerrar Sesión</a>
+                                  <li>  
+                                {% endif %}   
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    <div class="container text-dark">
+        <h4 class="text-center mt-3"> Equipos</h4>
+        <div class="row justify-content-center">
+            <div class="col-2"> 
+            <table id="tabla_equipos1" class="table table-responsive-xs table-equipos table-hover">
+                    <tbody></tbody>
+
+                </table>
+            </div>
+            <div class="col-2"> 
+                <table id="tabla_equipos2" class="table table-responsive-xs table-equipos table-hover">
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="col-2"> 
+                <table id="tabla_equipos3" class="table table-responsive-xs table-equipos table-hover"> 
+                    <tbody></tbody>
+
+                </table>
+            </div>
+            <div class="col-2"> 
+                <table id="tabla_equipos4" class="table table-responsive-xs table-equipos table-hover">  
+                    <tbody></tbody>
+
+                </table>
+            </div>
+            <div class="col-2"> 
+                <table id="tabla_equipos5" class="table table-responsive-xs table-equipos table-hover">  
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center text-dark">
+                    <div class="table-responsive">
+                        <table id="tabla_jugadores" class="table table-jugadores tabla-grande table-hover col-lg-12" style="display: none">  
+                            <thead class="thead-dark"><tr>
+                                    <th scope="col">Dorsal</th> 
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Nacionalidad</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">Posicion</th>
+                                    <th scope="col">Goles</th>
+                                    <th scope="col">Asistencias</th>
+                                    <th scope="col">Amarillas</th>
+                                    <th scope="col">Rojas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla_jugadores_body"></tbody>
+                        </table>
+                    </div>
+                </div>                
+            </div>
+        </div>
+{% endblock %}
