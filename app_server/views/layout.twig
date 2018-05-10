@@ -5,7 +5,16 @@
          <link rel="shortcut icon" href="/favicon.ico">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.0/font/css/open-iconic-bootstrap.min.css" />
+        {% if user %}
+            {% if user.estilo == 0 %}
+                <link id="estilo" rel='stylesheet' href='/stylesheets/iaw-p0.css'/>
+                {% else %}
+                <link id="estilo" rel='stylesheet' href='/stylesheets/iaw-p0-est2.css'/>
+            {% endif %}
+        {% else %}
         <link id="estilo" rel='stylesheet' href='/stylesheets/iaw-p0.css'/>
+        {% endif %}
+
     </head>
 
     {% block body %}{% endblock %}

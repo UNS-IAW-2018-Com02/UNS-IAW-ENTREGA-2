@@ -7,17 +7,8 @@ var jornadaActual = 30;
 $(document).ready(function () {
 
          $.get("/api/user_data", function(data, status){
-            //Si un usuario inicio sesión
-            if(!jQuery.isEmptyObject(data)){
-                if (data.user.estilo === 1){
-                     $('#estilo').attr('href', '/stylesheets/iaw-p0-est2.css');
-                }
-                else{
-                    $('#estilo').attr('href', '/stylesheets/iaw-p0.css');
-                }
-            }
-            //Ningun usuario inicio sesión
-            else{
+            //Si ningun usuario inicio sesión
+            if(jQuery.isEmptyObject(data)){
                 var guardado = localStorage.getItem("style");
                 if (guardado === null) {
                     var estilo = "/stylesheets/iaw-p0.css";
