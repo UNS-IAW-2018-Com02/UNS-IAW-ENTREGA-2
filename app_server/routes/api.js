@@ -10,4 +10,5 @@ router.get('/partidosEditor', apiController.getPartidosEditor);
 router.get('/users', apiController.getUsuarios);
 router.get('/user_data', apiController.getCurrentUser);
 
+
 module.exports = router;

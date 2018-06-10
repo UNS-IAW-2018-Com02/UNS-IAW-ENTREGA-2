@@ -25,7 +25,6 @@ app.use(passport.session());
 
 const indexRouter = require('./app_server/routes/index');
 const apiRouter = require('./app_server/routes/api');
-const adminRouter = require('./app_server/routes/admin');
 const authRouter = require('./app_server/routes/auth');
 
 
@@ -43,7 +42,6 @@ app.use('/shared',  express.static(__dirname + '/app_server/views/shared'));
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
-app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 
 app.use(function(req, res, next) {

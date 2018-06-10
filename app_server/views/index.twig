@@ -28,11 +28,18 @@
                                     <a id="btn_calendario" class="nav-link" href="/fechas">Calendario</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
-                                </li>
-                                <li class="nav-item">
                                     <a id="btn_equipo" class="nav-link" href="/equipos">Equipos</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
+                                </li>
+                                
+                                {% if user.editor %}
+                                <li class="nav-item">
+                                    <a id="btn_mundial" class="nav-link" href="/editorNoticias">Noticias</a>
+                                </li>
+                                {% endif %}
+                                
                                 <li class="nav-item">
                                     <a id="btn-estilo" class="nav-link" onclick="cambiarEstilo();"><span class="oi oi-brush"></span>Cambiar Estilo</a>
                                 </li>
@@ -83,37 +90,38 @@
                 <!-- Carousel -->
 
                 <div class="col-lg-6 border pt-2" id="c2">  
-
                     <div class="col my-0 py-1 text-center">
-                        <h5 class="display-6">Noticias de La Liga</h5>
+                       <h5 class="display-6">Noticias de La Liga</h5>
                     </div>
+                    <div id ="carousel-index" class= "mb-3">                    
 
-                    <div id="carousel-noticias" class="carousel slide px-3" data-ride="carousel">
+                        <div id="carousel-noticias" class="carousel slide px-3" data-ride="carousel">
 
-                        <ol class="carousel-indicators" id="carousel-slide">                            
-                        </ol>
+                            <ol class="carousel-indicators" id="carousel-slide">                            
+                            </ol>
 
-                        <div class="carousel-inner" id="carousel-inn">                          
+                            <div class="carousel-inner" id="carousel-inn">                          
+                            </div>
+
+                            <a class="carousel-control-prev" href="#carousel-noticias" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+
+                            <a class="carousel-control-next" href="#carousel-noticias" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
                         </div>
+                     </div>   
 
-                        <a class="carousel-control-prev" href="#carousel-noticias" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Anterior</span>
-                        </a>
+                        <!-- Noticias -->
+                        <div class="container">
+                            <div class="row" id="noticias-sec">
 
-                        <a class="carousel-control-next" href="#carousel-noticias" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a>
-                    </div>
-
-                    <!-- Noticias -->
-                    <div class="container">
-                        <div class="row mt-3" id="noticias-sec">
+                            </div>
 
                         </div>
-
-                    </div>
                 </div>
 
                 <!-- Calendario -->
@@ -125,7 +133,7 @@
                             <tbody id="calendario"></tbody>
                         </table>
                     </div>
-                    <a class="btn btn-dark btn-block" href="/fechas">Ver Calendario Completo</a>
+                    <a id="btn_calendario_completo" class="btn btn-dark btn-block" href="/fechas">Ver Calendario Completo</a>
 
                 </div>
 
@@ -133,4 +141,13 @@
         </div>
 
       
+{% endblock %}
+
+{% block scripts %}
+
+    <script src='/javascripts/iaw-p0.js'></script>
+    <script src='/javascripts/iaw-p0-jornadas.js'></script>
+    <script src='/javascripts/iaw-p0-equipos.js'></script>
+    <script src='/javascripts/iaw-p0-noticias.js'></script>
+
 {% endblock %}

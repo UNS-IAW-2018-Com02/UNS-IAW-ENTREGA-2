@@ -28,11 +28,18 @@
                                     <a id="btn_calendario" class="nav-link active" href="/fechas">Calendario</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
-                                </li>
-                                <li class="nav-item">
                                     <a id="btn_equipo" class="nav-link" href="/equipos">Equipos</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
+                                </li>
+
+                                {% if user.editor %}
+                                <li class="nav-item">
+                                    <a id="btn_mundial" class="nav-link" href="/editorNoticias">Noticias</a>
+                                </li>
+                                {% endif %}
+                                
                                 <li class="nav-item">
                                     <a id="btn-estilo" class="nav-link" onclick="cambiarEstilo();"><span class="oi oi-brush"></span>Cambiar Estilo</a>
                                 </li>
@@ -42,8 +49,10 @@
                                   </li>
                                   <li class="nav-item">
                                     <a href="/auth/logout" class="btn btn-warning"><span class="fa fa-google-plus"></span>Cerrar Sesión</a>
-                                  <li>  
-                                {% endif %}     
+                                  <li>
+
+                                 
+                                {% endif %}
                             </ul>
                         </div>
                     </nav>
@@ -52,10 +61,15 @@
         </div>
          <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     <div id="fixture_completo" class="text-center mt-3 text-dark">
                         <div>
-                            <h4> Calendario </h4>
+                            {% if user.editor %}
+                                <h4 id="calendar" style="margin-right: 55px;"> Mis Partidos </h4>
+                            {% else %}
+                                <h4 id="calendar"> Calendario </h4>
+                            {% endif %}
+
                             <button class="d-inline btn btn-link" id="btn_jornada_anterior" onclick="buscarJornada(this);">
                                 <span class="oi oi-chevron-left"></span>
                             </button>
@@ -63,10 +77,16 @@
                             <button class="d-inline btn btn-link" id="btn_jornada_siguiente" onclick="buscarJornada(this);">
                                 <span class="oi oi-chevron-right"></span>
                             </button>
+                            {% if user.editor %}
+                            <label class="float-right" id="switch">
+                                <input type="checkbox" id="checkslider" onclick="cambiarVista();" checked>
+                                <span class="slider round"></span>
+                            </label>
+                            {% endif %}
                         </div>                       
                     </div>
                     <div class="table-responsive text-center text-dark">
-                        <table class="table mt-2 table-hover tabla-laliga">
+                        <table id="tabla_fechas" class="table mt-2 table-hover tabla-laliga">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">Fecha</th>
@@ -75,10 +95,9 @@
                                     <th scope="col">-</th>
                                     <th scope="col">Visitante</th>                                    
                                     {% if user.editor %}
-                                    <th scope="col">Editar</th>
+                                    <th scope="col" id="th-editar">Editar</th>
                                     {% else %}
                                     <th scope="col" class="tabla-estadio">Estadio</th>
-                                    <th scope="col" class="tabla-arbitro">Arbitro</th>
                                     {% endif %}
                                 </tr>
                             </thead>
@@ -89,4 +108,11 @@
                 </div>
             </div>
         </div>
+{% endblock %}
+
+{% block scripts %}
+
+    <script src='/javascripts/iaw-p0.js'></script>
+    <script src='/javascripts/iaw-p0-jornadas.js'></script>
+
 {% endblock %}

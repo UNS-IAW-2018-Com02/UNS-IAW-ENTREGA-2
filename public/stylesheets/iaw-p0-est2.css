@@ -278,11 +278,18 @@ table.center{
     transform: scale(0.95); 
 }
 
-.titulo{
+.titulo-index{
     font-size: 1.25rem;
     font-weight: bold;
     margin-left: auto;
 }
+
+.titulo{
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-left: auto;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: #000;}
 
 .titulo-noticia {
     font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
@@ -355,4 +362,91 @@ navar-container{
 
 #tabla_posiciones{
     font-size: 12px;
+}
+
+
+
+/* The switch - the box around the slider */
+#switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+#switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #60d9eb;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #17a2b8;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #17a2b8;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#btn_jornada_anterior{
+    padding-left: 8%;
+    color: #17a2b8;
+}
+
+#btn_jornada_siguiente{
+    color: #17a2b8;
+    margin-right: 55px;
+}
+
+
+[id^=local]{
+    width: 210px;
+    margin-right: 18px
+}
+
+[id^=visita]{
+    margin-left: 3%;
+    width: 210px;
+}
+
+.bar {
+    height: 18px;
+    background: green;
 }

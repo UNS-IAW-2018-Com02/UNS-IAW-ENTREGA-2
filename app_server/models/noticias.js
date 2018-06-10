@@ -18,8 +18,9 @@ const noticiaSchema = new mongoose.Schema({
         required: true
     },
     imagen: {
-        data: Buffer,
-        contentType: String
+        //data: Buffer,
+        //contentType: String
+        type: String
     },
     fecha: {
         type: String,
@@ -28,6 +29,9 @@ const noticiaSchema = new mongoose.Schema({
     seleccionada: {
         type: Boolean,
         required: true
+    },
+    video: {
+        type: String
     }
     
     

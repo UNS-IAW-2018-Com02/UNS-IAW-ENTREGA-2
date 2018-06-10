@@ -28,11 +28,18 @@
                                     <a id="btn_calendario" class="nav-link" href="/fechas">Calendario</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
+                                    <a id="btn_equipo" class="nav-link" href="/equipos">Equipos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a id="btn_equipo" class="nav-link active" href="/equipos">Equipos</a>
+                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
                                 </li>
+
+                                {% if user.editor %}
+                                <li class="nav-item">
+                                    <a id="btn_mundial" class="nav-link" href="/editorNoticias">Noticias</a>
+                                </li>
+                                {% endif %}
+                                
                                 <li class="nav-item">
                                     <a id="btn-estilo" class="nav-link" onclick="cambiarEstilo();"><span class="oi oi-brush"></span>Cambiar Estilo</a>
                                 </li>
@@ -53,7 +60,15 @@
         <div class="container">
             <div class="row justify-content-center px-2 text-justify">
                 <div class="col-lg-8 mt-5 rounded border bg-white" id="noticia">
+
                 </div>
             </div>
         </div>
+{% endblock %}
+
+{% block scripts %}
+
+    <script src='/javascripts/iaw-p0.js'></script>
+    <script src='/javascripts/iaw-p0-noticias.js'></script>
+
 {% endblock %}

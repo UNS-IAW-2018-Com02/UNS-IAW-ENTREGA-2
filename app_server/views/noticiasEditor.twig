@@ -1,0 +1,166 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<body onload="abrirNoticiasEditor()">    
+
+        <div class="container-fluid">
+            <div class="row header-laliga text-center py-3 px-5">           
+                <img class="img-header" src="/images/laliga.png">
+                <h3 class="text-white my-auto" id="txt-header"> No es futbol. Es LaLiga</h3>
+            </div>
+        </div>
+     <div class="container-fluid bg-danger">
+            <div class="container">
+                <div class = "row justify-content-start bg-danger">
+                    <nav class="navbar navbar-dark navbar-expand-md">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarText">
+                            <ul id="navbar" class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Inicio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_clasificacion" class="nav-link" href="/posiciones">Clasificación</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_calendario" class="nav-link" href="/fechas">Calendario</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_equipo" class="nav-link" href="/equipos">Equipos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="btn_calendario" class="nav-link" href="/estadisticas">Estadísticas</a>
+                                </li>
+                                
+                                {% if user.editor %}
+                                <li class="nav-item">
+                                    <a id="btn_mundial" class="nav-link active" href="/editorNoticias">Noticias</a>
+                                </li>
+                                {% endif %}
+                                
+                                <li class="nav-item">
+                                    <a id="btn-estilo" class="nav-link" onclick="cambiarEstilo();"><span class="oi oi-brush"></span>Cambiar Estilo</a>
+                                </li>
+                                {% if user %}
+                                  <li class="nav-item">
+                                    <a class="nav-link text-warning"><span class="oi oi-person"></span>&ensp;{{user.google.name}}</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a href="/auth/logout" class="btn btn-warning"><span class="fa fa-google-plus"></span>Cerrar Sesión</a>
+                                  <li>  
+                                {% endif %}       
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    <div class="container text-dark">
+      <div class="row justify-content-center">
+
+                <div class="col-lg-8 mt-3" id="c2">  
+
+                    <div class="col my-0 py-1 text-center">
+                        <h5 class="display-6">Noticias de La Liga</h5>
+                    </div>
+
+                    <div id="carousel-noticias" class="carousel slide px-3" data-ride="carousel">
+
+                        <ol class="carousel-indicators" id="carousel-slide">                            
+                        </ol>
+
+                        <div class="carousel-inner" id="carousel-inn">                          
+                        </div>
+
+                        <a class="carousel-control-prev" href="#carousel-noticias" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+
+                        <a class="carousel-control-next" href="#carousel-noticias" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
+                </div>
+
+
+      </div>
+    </div>    
+    <div class="container text-dark ">
+      <div class="row justify-content-center">
+       <div class="col-lg-8 mt-3">
+         <div class="col my-0 py-1 text-center">
+            <h5 class="display-6">Nueva Noticia</h5>
+         </div>
+        <form class="form-noticia" action="nuevaNoticia" enctype="multipart/form-data" method="POST" novalidate>
+          <div class="form-group">
+            <label class="font-weight-bold" for="titulo_noticia">Título*</label>
+            <input type="text" class="form-control" id="titulo_noticia" name="titulo" required>
+            <div class="invalid-feedback">
+                Ingrese el título de la noticia
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="font-weight-bold" for="sintesis_noticia">Síntesis*</label>
+            <textarea class="form-control" id="sintesis_noticia" name="sintesis" rows="3" required></textarea>
+            <div class="invalid-feedback">
+                Ingrese la síntesis de la noticia
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="font-weight-bold" for="cuerpo_noticia">Cuerpo*</label>
+            <textarea class="form-control" id="cuerpo_noticia" name="cuerpo" rows="6" required></textarea>
+            <div class="invalid-feedback">
+                Ingrese el cuerpo de la noticia
+            </div>
+          </div>
+
+          <label class="font-weight-bold" for="video_noticia">Imagen*</label>
+          <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" name="imgNoticia" id="img_noticia" required>
+            <label class="custom-file-label" for="imagen_noticia">Seleccione un archivo...</label>
+            <div class="invalid-feedback">Ingrese una imagen para la noticia</div>
+          </div>
+
+          <div class="form-group">
+              <label class="font-weight-bold" for="categoria_noticia">Categoría</label>
+              <select id="categoria_noticia" name="categoria" class="form-control">
+                <option>Principal</option>
+                <option>Secundaria</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label class="font-weight-bold" for="video_noticia">Video</label>
+            <input type="text" class="form-control" id="video_noticia" name="video" placeholder="URL">
+          </div>
+
+
+
+          <input type = "submit" class="btn btn-primary mt-2" value="Guardar Noticia"></input>
+
+          </form>
+        </div>
+      </div>
+    </div>    
+{% endblock %}
+
+{% block scripts %}
+{% if respuesta %}
+  <script>
+      toastr.success("Noticia agregada");
+  </script>
+{% endif %}
+
+  <script src='/javascripts/iaw-p0.js'></script>
+  <script src='/javascripts/iaw-p0-noticias.js'></script>
+
+
+{% endblock %}  
+

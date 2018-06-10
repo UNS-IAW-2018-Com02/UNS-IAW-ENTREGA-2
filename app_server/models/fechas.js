@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const partidoSchema = new mongoose.Schema({
     id_partido:{
-        type : Number
+        type : String
     },
     equipo_local: {
         type: String,
@@ -40,7 +40,7 @@ const partidoSchema = new mongoose.Schema({
 
 const fechaSchema = new mongoose.Schema({
     numero: Number,
-    partido: [partidoSchema]
+    partidos: [partidoSchema]
 });
 
 module.exports = mongoose.model('Fecha', fechaSchema);

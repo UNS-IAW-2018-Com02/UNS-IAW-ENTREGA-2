@@ -21,6 +21,7 @@ module.exports = function(passport) {
 	    clientID: '46643992853-6so3crkpn2gqg9vvhl77r4ragbothmpj.apps.googleusercontent.com',
    		clientSecret: 'cL9GayRn9NTWkMlyaZoHVDgU',
    		callbackURL: "https://laliga.herokuapp.com/auth/google/callback"
+   		//callbackURL: "http://localhost:3000/auth/google/callback"
     },
 	  function(accessToken, refreshToken, profile, done) {
 	    	process.nextTick(function(){
