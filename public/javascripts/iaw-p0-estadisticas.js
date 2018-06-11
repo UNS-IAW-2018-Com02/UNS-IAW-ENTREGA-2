@@ -1,10 +1,13 @@
 
+//Inicio para buscar las estadísticas.
 function buscarEstadisticas() {
 
     buscarJugadores();
     estadisticasPorEquipo();
 }
 
+
+//Busca las estadísticas de los jugadores, ordena según los valores y muestra los máximos en cada apartado.
 function buscarJugadores() {
 
     $.get("/api/equipos", function(data, status){
@@ -34,6 +37,7 @@ function buscarJugadores() {
     });
 }
 
+//Busca las estadísticas de equipo, ordena y muestra los máximos en cada apartado.
 function estadisticasPorEquipo() {
 
     $.get("/api/equipos", function(data, status) {
@@ -58,7 +62,7 @@ function estadisticasPorEquipo() {
 
 }
 
-
+//Muestra los máximos encontrados en la interface.
 function mostrarMaximos(array, t) {
     var nom_tabla;
     var subs;
@@ -92,7 +96,7 @@ function mostrarMaximos(array, t) {
 
 }
 
-
+//Muestra los máximos de los equipos en la interface.
 function mostrarMaximosEquipos(array, t) {
     var nom_tabla;
     var subs;
@@ -123,6 +127,8 @@ function mostrarMaximosEquipos(array, t) {
 
 }
 
+
+//Ordena las estadísticas.
 function ordenarEstadisticas(array, prop) {
 
     array.sort(

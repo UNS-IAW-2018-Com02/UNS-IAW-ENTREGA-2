@@ -10,7 +10,7 @@ function abrirTablaReducida() {
 });
 }
 
-
+//Muestra la tabla de posiciones.
 function abrirTabla() {
 
   $.get("/api/equipos", function(data, status){
@@ -20,6 +20,7 @@ function abrirTabla() {
   });
 }
 
+//Rellena la tabla con los datos.
 function mostrarTabla(equipos) {
 
 
@@ -48,7 +49,7 @@ function mostrarTabla(equipos) {
     }); 
 }
 
-
+//Rellena la tabla en el index.
 function mostrarTablaReducida(equipos) {
 
   $.get("/api/user_data", function(data, status) {
@@ -83,11 +84,14 @@ function abrirEquipos() {
   });
 }
 
+//Muestra los equipos en tabla.
 function mostrarEquipos(data) {
 
   var tabla = "#tabla_equipos";
   var cont = 1;
   var img;
+
+  //ordena los equipos según el nombre.
 
   data.sort(
     function (a, b) {
@@ -112,6 +116,8 @@ function mostrarEquipos(data) {
 
 
 //Favoritos
+
+//Marca un equipo como favorito y guarda el equipo como favorito de ese usuario.
 function guardarFavorito(equipo){
   $.get("/api/user_data", function(data, status) {
             //Si no hay un usuario logueado, solo marca el favorito
@@ -133,6 +139,8 @@ function guardarFavorito(equipo){
         });
 }
 
+
+//Marca el equipo favorito en la tabla.
 function marcarFavorito(equipo){
   $('#tabla_posiciones > tbody  > tr' ).each(function() {
     if ($(this).children('td:nth-child(2)').text() === equipo)
@@ -142,6 +150,8 @@ function marcarFavorito(equipo){
   });
 }
 
+
+//Elimina un equipo que estuviera como favorito.
 function eliminarFavorito(equipo){
   $('#tabla_posiciones > tbody  > tr' ).each(function() {
     if ($(this).children('td:nth-child(2)').text() === equipo)
@@ -151,6 +161,7 @@ function eliminarFavorito(equipo){
 
 //Ordenar
 
+//Ordena la tabla de posiciones según puntos, diferencia de gol, goles a favor, en ese orden.
 function ordenarTabla(data) {
   var index;
   var equipos = new Array();

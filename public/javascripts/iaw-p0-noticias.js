@@ -1,4 +1,5 @@
 
+//Muestra las noticias en el index.
 function abrirNoticias() {
 
     $.get("/api/noticias", function(data, status) {
@@ -6,6 +7,7 @@ function abrirNoticias() {
     });
 }
 
+//Muestra las noticias en el apartado del editor.
 function abrirNoticiasEditor() {
 
     $.get("/api/noticias", function(data, status) {
@@ -13,6 +15,8 @@ function abrirNoticiasEditor() {
     });
 }
 
+
+//Muestra uan noticia completa.
 function mostrarNoticia() {
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -31,6 +35,8 @@ function mostrarNoticia() {
     });
 }
 
+
+//Auxiliar del anterior.
 function mostrarNoticiaCompleta(noticia) {
     var img = $("<img>").attr("class", "img-noticia mt-3 mb-3").attr("src", noticia.imagen);
     var titulo = $("<h3></h3>").attr("class", "titulo-noticia").text(noticia.titulo);
@@ -53,6 +59,8 @@ function mostrarNoticiaCompleta(noticia) {
     }
 }
 
+
+//Muestra las noticias en forma reducida.
 function mostrarNoticiasReducidas(noticias) {
     var index = 0;
     var cant = 0;
@@ -97,6 +105,7 @@ function mostrarNoticiasReducidas(noticias) {
     }
 }
 
+//Muestra las noticias reducidar al editor en el carousel.
 function mostrarNoticiasReducidasEditor(noticias) {
 
     var index = 0;
@@ -125,6 +134,8 @@ function mostrarNoticiasReducidasEditor(noticias) {
     });
 }
 
+
+//Guarda una nueva noticia ingresada por el editor.
 function guardarNoticia(){
 
     var titulo = $("#titulo_noticia").val();
@@ -155,6 +166,8 @@ function guardarNoticia(){
 
 }
 
+
+//Chequea que el link del video sea correcto.
 function chequearVideo(dir){
 
     if(dir === undefined)

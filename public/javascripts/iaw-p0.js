@@ -17,7 +17,7 @@ $(document).ready(function () {
         }); 
 });
 
-
+//Cambiar el estilo.
 function cambiarEstilo() {
 
     $.get("/api/user_data", function(data, status){

@@ -25,6 +25,8 @@ function abrirJornadaIndex() {
 
 }
 
+
+//Muestra el calendario. 
 function mostrarCalendario(fechas) {
 
 	var index;
@@ -37,6 +39,8 @@ function mostrarCalendario(fechas) {
 	}
 }
 
+
+//Muestra el calendario completo.
 function mostrarCalendarioCompleto(data) {
 
 	if (data.length === 0){
@@ -47,9 +51,6 @@ function mostrarCalendarioCompleto(data) {
 	}
 
 	else{
-		 //var pxJornada = data[jornadaActual - 1];
-		 //$("#nroJornada").text("Jornada " + pxJornada.numero);
-		 //mostrarJornadaEnTabla(pxJornada.partidos);
 
 		  var pxJornada;
 		  $.get("/api/fechas", function(data, status) {
@@ -85,7 +86,7 @@ function agregarPartido(partido) {
 	$("#calendario").append(row);
 }
 
-
+//Obtiene una jornada con un dado número. Para la jornada siguiente y anterior.
 
 function obtenerJornada(nro) {
 	var j;
@@ -124,6 +125,7 @@ function obtenerJornada(nro) {
 
 }
 
+//Muestra el calendario para un usuario no editor.
 function mostrarJornadaUsuario(partidos){
 
 
@@ -151,6 +153,7 @@ function mostrarJornadaUsuario(partidos){
 
 }
 
+//Muestra el calendario para un usuario editor.
 function mostrarJornadaEditor(partidos, index){
 
 	var jornadaDeseada = partidos[index];
@@ -196,6 +199,8 @@ function mostrarJornadaEditor(partidos, index){
 
 }
 
+
+//Muestra una jornada, para un usuario o un editor segun corresponda.
 function mostrarJornadaEnTabla(partidos){
 	$("#tabla_fixture").empty();
 	$.get("/api/user_data", function(data, status){
@@ -226,7 +231,7 @@ function mostrarJornadaEnTabla(partidos){
 	});
 }
 
-
+//Mensaje para los partidos asignados a un editor, cuando no tiene ninguno en una jornada.
 function mostrarMensajeEditor(){
 
 	var row = $("<tr></tr>").attr("scope", "row");
@@ -234,6 +239,8 @@ function mostrarMensajeEditor(){
 	$("#tabla_fixture").append(row);
 }
 
+
+//Obtiene la jornada anterior o siguiente, según se haya elegido.
 function buscarJornada(event) {
 
     //Saco el número de la jornada que está mostrando cuando tocó el boton.
@@ -250,8 +257,6 @@ function buscarJornada(event) {
 }
 
 //Guardar cambios del editor sobre un partido
-
-
 function agregarOpcion(local, visita, form, partido, i){
 
 	$("#btnAgregar"+partido+"_"+i).text("x").attr("class", "btn btn-danger btn-large").attr("onclick", "descartarFila(" + partido +","+ i+ ")");
@@ -290,6 +295,10 @@ function descartarFila(index, i){
 	$("#form2_editor"+ index+ "_"+ i).remove();
 }
 
+
+//Guarda los cambios hechos por el editor sobre un partido.
+//Realiza los chequeos correspondientes sobre cantidad de goles y asistencias, autores de los goles y asistencias, y que coincidan con el resultado ingresado.
+//Si está todo bien, guarda y quita ese partido de los asignados al editor.
 function submitPartido(local, visitante, index){
 
 	$.get("/api/equipos", function(data, status) {
@@ -468,7 +477,7 @@ function ordenarJornadas(data) {
 }
 
 
-
+//En modo editor, pasa de una vista de editor a usuario o viceversa.
 function cambiarVista(){
 
     if($("#checkslider")[0].checked){

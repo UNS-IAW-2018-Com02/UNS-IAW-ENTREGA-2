@@ -1,4 +1,6 @@
 
+
+//Muestra los jugadores de un equipo.
 function abrirJugadores(id, cell) {
 
     $("#tabla_equipos1").find("*").css('backgroundColor', "");
@@ -19,6 +21,7 @@ function abrirJugadores(id, cell) {
     });
 }
 
+//Muestra los jugadores en la interface. Auxiliar al anterior.
 
 function mostrarJugadores(equipos, id) {
     $.each(equipos, function (i, equipo) {
